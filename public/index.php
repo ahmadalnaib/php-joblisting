@@ -1,11 +1,14 @@
 <?php
 require "../helper.php";
 
-require base_path("Framework/Router.php");
-require base_path("Framework/Database.php");
-// $config = require base_path("config/db.php");
-// $db = new Database($config);
-// load_view("home");
+
+
+spl_autoload_register(function ($class) {
+    $path= base_path("Framework/" . $class . ".php");
+    if(file_exists($path)){
+        require $path;
+    }
+});
 
 $router = new Router();
 
