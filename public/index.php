@@ -1,14 +1,9 @@
 <?php
+require __DIR__ . "/../vendor/autoload.php";
 require "../helper.php";
 
 
 
-spl_autoload_register(function ($class) {
-    $path= base_path("Framework/" . $class . ".php");
-    if(file_exists($path)){
-        require $path;
-    }
-});
 
 $router = new Router();
 
