@@ -1,12 +1,7 @@
 <?php
-// $routers = require base_path("routes.php");
 
-// if (array_key_exists($uri, $routers)) {
-//   require base_path($routers[$uri]);
-// } else {
-//   http_response_code(404);
-//   require base_path($routers['404']);
-// }
+namespace Framework;
+
 
 class Router
 {
@@ -19,8 +14,6 @@ class Router
       'uri' => $uri,
       'controller' => $controller
     ];
-
-
   }
 
   /**
@@ -103,7 +96,7 @@ class Router
    * @return void
    */
 
-  public function error404($httpCode=404)
+  public function error404($httpCode = 404)
   {
     http_response_code($httpCode);
     load_view("error/{$httpCode}");
@@ -123,12 +116,11 @@ class Router
   {
     foreach ($this->routes as $route) {
       if ($route['uri'] === $uri && $route['method'] === $method) {
-      require base_path('App/'. $route['controller']);
-      return;
+        require base_path('App/' . $route['controller']);
+        return;
       }
     }
 
     $this->error404();
-
   }
 }
