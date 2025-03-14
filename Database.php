@@ -16,7 +16,8 @@ class Database
 
     $options = [
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      // PDO::FETCH_ASSOC: returns an array $LISTINGS['title']
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
     ];
 
     try {
@@ -35,10 +36,13 @@ class Database
    * @return array
    */
 
-  public function query($query)
+  public function query($query,$params=[])
   {
     try {
       $stmt = $this->conn->prepare($query);
+      foreach ($params as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+      }
       $stmt->execute();
       return $stmt;
     } catch (PDOException $e) {
