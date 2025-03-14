@@ -21,7 +21,7 @@ function base_path($path = '')
 
 function load_view($name,$data=[])
 {
-  $viewBath = base_path("views/{$name}.view.php");
+  $viewBath = base_path("App/views/{$name}.view.php");
   if (file_exists($viewBath)) {
     extract($data);
     require $viewBath;
@@ -40,7 +40,7 @@ function load_view($name,$data=[])
 
 function load_partial($name)
 {
-  $partialBath = base_path("views/partials/{$name}.php");
+  $partialBath = base_path("App/views/partials/{$name}.php");
   if (file_exists($partialBath)) {
     require $partialBath;
   } else {

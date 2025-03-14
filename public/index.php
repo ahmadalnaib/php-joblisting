@@ -1,8 +1,8 @@
 <?php
 require "../helper.php";
 
-require base_path("Router.php");
-require base_path("Database.php");
+require base_path("Framework/Router.php");
+require base_path("Framework/Database.php");
 // $config = require base_path("config/db.php");
 // $db = new Database($config);
 // load_view("home");
